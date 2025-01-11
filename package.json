@@ -1,6 +1,6 @@
 {
   "name": "postcss-figma-blur-fix",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "packageManager": "pnpm@9.15.2",
   "description": "PostCSS plugin that adjusts blur values imported from Figma to ensure they visually match the blur effect in browsers. Perfect for syncing design and implementation.",
   "author": "Ivan Bulakhov <kabarchonok@gmail.com>",
