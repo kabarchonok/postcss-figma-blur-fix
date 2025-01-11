@@ -1,0 +1,44 @@
+{
+  "name": "postcss-figma-blur-fix",
+  "version": "0.0.0",
+  "packageManager": "pnpm@9.15.2",
+  "description": "PostCSS plugin that adjusts blur values imported from Figma to ensure they visually match the blur effect in browsers. Perfect for syncing design and implementation.",
+  "author": "Ivan Bulakhov <kabarchonok@gmail.com>",
+  "license": "MIT",
+  "repository": "kabarchonok/postcss-figma-blur-fix",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "postcss-figma-blur-fix"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": "^9.0.0"
+  },
+  "scripts": {
+    "unit": "node --test index.test.js",
+    "test": "npm run unit && eslint .",
+    "release": "pnpm dlx bumpp -r && pnpm -r publish"
+  },
+  "peerDependencies": {
+    "postcss": "^8.4.27"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.13.0",
+    "eslint": "^9.18.0",
+    "postcss": "^8.4.27"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ]
+  }
+}
