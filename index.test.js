@@ -19,6 +19,10 @@ test('combined test case', async () => {
           filter: blur(25.5px);
       }
 
+      .skip-not-px {
+          filter: blur(25rem);
+      }
+
       .backdrop-filter {
           backdrop-filter: blur(15px);
       }
@@ -30,6 +34,10 @@ test('combined test case', async () => {
     `
       .filter {
           filter: blur(11.475px);
+      }
+
+      .skip-not-px {
+          filter: blur(25rem);
       }
 
       .backdrop-filter {
