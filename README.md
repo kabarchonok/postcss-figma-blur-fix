@@ -4,9 +4,9 @@
 
 ## Why do you need it?
 
-Figma and browsers use different algorithms to render blur effects, often resulting in inconsistent visuals. A blur value from Figma may appear significantly stronger or weaker when implemented in CSS.
+Figma and browsers use different algorithms to render blur effects, often resulting in inconsistent visuals. A blur value from Figma may appear significantly stronger when implemented in CSS.
 
-The plugin solves this by simply multiplying the blur() value by 0.45, so that the browser output closely resembles the original design.
+The plugin solves this by simply multiplying the blur() value by 0.45, so that the browser output _closely_ resembles the original design.
 
 > [!NOTE]
 > This plugin only works with absolute `px` values.
