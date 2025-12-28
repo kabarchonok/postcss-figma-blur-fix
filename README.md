@@ -1,59 +1,57 @@
 # postcss-figma-blur-fix
 
-> [PostCSS](https://github.com/postcss/postcss) plugin that adjusts blur values imported from Figma by multiplying them by 0.45. This ensures the blur effect in browsers visually matches the design as seen in Figma.
+> [PostCSS](https://github.com/postcss/postcss) plugin that adjusts blur values imported from Figma by multiplying them by 0.4356. This ensures the blur effect in browsers visually matches the design as seen in Figma.
+>
+> Works with `filter: blur()` and `backdrop-filter: blur()`.
 
 ## Why do you need it?
 
-Figma and browsers use different algorithms to render blur effects, often resulting in inconsistent visuals. A blur value from Figma may appear significantly stronger when implemented in CSS.
+Figma and CSS implement blur differently. According to [Bjango's research](https://bjango.com/articles/blurradiuscomparison/):
 
-The plugin solves this by simply multiplying the blur() value by 0.45, so that the browser output _closely_ resembles the original design.
+- Figma blur coefficient: `1.136364`
+- CSS `filter: blur()` coefficient: `0.495050`
 
-> [!NOTE]
-> This plugin only works with absolute `px` values.
-> If your CSS uses other units like `em`, `rem`, etc., the plugin will not change those values. Make sure your values are in px for the plugin to work correctly.
+Conversion coefficient: `0.495050 / 1.136364 = 0.4356`
 
-## Examples
+## Example
 
-input:
-
+Input:
 ```css
-.filter {
-    filter: blur(25.5px);
+.element {
+  filter: blur(30px);
 }
 
-.backdrop-filter {
-    backdrop-filter: blur(15px);
+.backdrop {
+  backdrop-filter: blur(15px);
 }
 
-.multiple-values {
-    filter: opacity(90%) blur(30px);
+.multiple {
+  filter: opacity(90%) blur(30px);
 }
 ```
 
-output:
-
+Output:
 ```css
-.filter {
-    filter: blur(11.475px);
+.element {
+  filter: blur(13.068px);
 }
 
-.backdrop-filter {
-    backdrop-filter: blur(6.75px);
+.backdrop {
+  backdrop-filter: blur(6.534px);
 }
 
-.multiple-values {
-    filter: opacity(90%) blur(13.5px);
+.multiple {
+  filter: opacity(90%) blur(13.068px);
 }
 ```
 
-## Usage
-install:
+## Installation
 
 ```bash
 npm install --save-dev postcss-figma-blur-fix
 ```
 
-Add to PostCSS plugins:
+## Usage
 
 ```diff
 module.exports = {
@@ -61,5 +59,33 @@ module.exports = {
 +   require('postcss-figma-blur-fix'),
     require('autoprefixer')
   ]
+}
+```
+
+## Default options
+```js
+require('postcss-figma-blur-fix')({
+  units: ['px'] // allowed: px, em, rem
+})
+```
+
+Example with `units: ['px']`:
+```css
+/* Input */
+.example {
+  filter: blur(20px);
+}
+
+.ignored {
+  filter: blur(2em);
+}
+
+/* Output */
+.example {
+  filter: blur(8.712px);
+}
+
+.ignored {
+  filter: blur(2em); /* unchanged */
 }
 ```
